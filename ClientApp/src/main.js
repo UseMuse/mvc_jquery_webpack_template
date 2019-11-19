@@ -1,3 +1,7 @@
+if (typeof module.hot !== "undefined") {
+    module.hot.accept();
+}
+
 import 'bootstrap/dist/css/bootstrap.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 import '../styles/site.css';
@@ -13,7 +17,7 @@ import 'bootstrap';
 
 //Add a namspace
 window.MyWebApp = {};
-alert('!!!')
+
 var Routes = {
     Home: {
         init: function () {
@@ -21,12 +25,36 @@ var Routes = {
         },
         NewJsPage: function () {
             // action-specific code
-            import("./newJsPage").then((module) => {
+            import(
+                /* webpackChunkName: "lazy-loading-newJsPage" */
+                "./newJsPage"
+            ).then((module) => {
                 window.MyWebApp.newJsPage = module.newJsPage;
+
+                const print = module.default;
+                print('!!!!!');
+
             });
+
+          
         },
         Privacy: function () {
             // Privacy action code
+        }
+    },
+    Users: {
+        init: function () {
+            // controller-wide code
+        },
+        Index: function () {
+            import(
+                /* webpackChunkName: "lazy-loading-usersPage" */
+                "./users"
+            ).then((module) => {
+                window.MyWebApp.Users = module.Init;
+                const InitDefault = module.default;
+                InitDefault('run default function');
+            });
         }
     }
 };

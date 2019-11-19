@@ -13,6 +13,13 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices" Version="3.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0" />
     <PackageReference Include="Westwind.AspnetCore.LiveReload" Version="0.1.12" />
   </ItemGroup>
 
@@ -25,7 +32,8 @@
     <!-- Install modules -->
     <Message Importance="high" Text="Restoring dependencies using 'npm'. This may take several minutes..." />
     <Exec Command="node -e &quot;console.log('NPM Installing dependencies...')&quot;" />
-    <Exec Command="npm install" />
+    <Exec Command="npm install --ignore-scripts" />
+    <Exec Command="npm run build" />
   </Target>
   
   <Target Name="RunWebpackProd" AfterTargets="ComputeFilesToPublish">

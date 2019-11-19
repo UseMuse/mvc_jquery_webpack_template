@@ -3,6 +3,16 @@
     ViewData["Title"] = "NewJsPage";
 }
 
+@section Scripts {
+    @*<environment names="Development">
+        <script src="~/dist/js/lazy-loading.bundle.js"></script>
+    </environment>*@
+    <script>
+        $(window).on('load', function () {
+            MyWebApp.newJsPage('@ViewData["message"]');
+        });
+    </script>
+}
 <h1>New Js Page</h1>
 
 <div class="dropdown mt-3">
@@ -17,13 +27,3 @@
 </div>
 
 <div class="mt-4" id="messageOnThisPage"></div>
-
-@section Scripts
-    {
-
-    <script>
-        $(window).on('load', function () {
-            MyWebApp.newJsPage('@ViewData["message"]');
-        });           
-    </script>
-}

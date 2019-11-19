@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Scripts {
+    @*<environment names="Development">
+        <script src="~/dist/js/lazy-loading-users.bundle.js"></script>
+    </environment>*@
+    <script>
+        $(window).on('load', function () {
+            MyWebApp.Users('@ViewData["message"]');
+        });
+    </script>
+}
+
+<h1>Index</h1>
+<div class="dropdown mt-3">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="far fa-thumbs-up"></i> Bootstrap dropdown
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="#">Action</a>
+        <a class="dropdown-item" href="#">Another action</a>
+        <a class="dropdown-item" href="#">Something else here</a>
+    </div>
+</div>
+
+<div class="mt-4" id="messageOnThisPage"></div>
